@@ -1,0 +1,4 @@
+/vendor/
+/.tmp
+*.sublime-workspace
+*.sublime-project
