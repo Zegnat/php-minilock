@@ -22,6 +22,13 @@ interface MiniLockInterface
     public function __construct(string $email, string $passphrase);
 
     /**
+     * Generate miniLock ID for the user.
+     *
+     * @return string the miniLock ID
+     */
+    public function getMiniLockID(): string;
+
+    /**
      * Decrypt a file.
      *
      * @param SplFileObject $from the file that will be decrypted
