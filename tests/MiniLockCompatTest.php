@@ -19,6 +19,8 @@ use Zegnat\MiniLock\MiniLock;
 final class MiniLockCompatTest extends TestCase
 {
     /**
+     * Make sure we generate the same key pair and miniLock ID.
+     *
      * @see https://github.com/kaepora/miniLock/blob/master/test/tests/deriveKey.js
      */
     public function testDeriveKey()
@@ -46,5 +48,42 @@ final class MiniLockCompatTest extends TestCase
             $object->getMiniLockID(),
             'miniLock ID from public key'
         );
+    }
+
+    /**
+     * Make sure encrypting a file creates the exact same ciphertext.
+     *
+     * The original test does not provide any credentials for the key pair
+     * generation. Instead it provides the keys in Base58-encoded form.
+     * Reflection is used to seed our instance of MiniLock.
+     *
+     * @see https://github.com/kaepora/miniLock/blob/master/test/tests/encryptDecryptFile.js
+     */
+    public function testEncryptDecryptFile()
+    {
+        $base58 = new Base58(['characters' => Base58::BITCOIN]);
+        $miniLock = new MiniLock('', '');
+        $publicKey = new \ReflectionProperty($miniLock, 'public');
+        $publicKey->setAccessible(true);
+        $publicKey->setValue(
+            $miniLock,
+            \mb_substr($base58->decode('dJYs5sVfSSvccahyEYPwXp7n3pbXeoTnuBWHEmEgi95fF'), 0, -1, '8bit')
+        );
+        $privateKey = new \ReflectionProperty($miniLock, 'private');
+        $privateKey->setAccessible(true);
+        $privateKey->setValue(
+            $miniLock,
+            $base58->decode('7S4YTmjkexJ2yeMAtoEKYc2wNMHseMqDH6YyBqKKkUon')
+        );
+
+        $size = $miniLock->encrypt(
+            new SplFileObject(__DIR__ . '/assets/test.jpg', 'r'),
+            new SplTempFileObject(),
+            [
+                'dJYs5sVfSSvccahyEYPwXp7n3pbXeoTnuBWHEmEgi95fF',
+                'PHD4eUWB982LUexKj1oYoQryayreUeW1NJ6gmsTY7Xe12',
+            ]
+        );
+        $this->assertSame(349779, $size, 'Encrypted file size');
     }
 }

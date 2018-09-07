@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba1d7c3f1c202a0e9b3c4603253078c3",
+    "content-hash": "e93f78b6247978deded2aa8f6a7b108b",
     "packages": [
         {
             "name": "tuupola/base58",
@@ -2559,5 +2559,7 @@
         "ext-scrypt": "*",
         "ext-sodium": "*"
     },
-    "platform-dev": []
+    "platform-dev": {
+        "ext-mbstring": "*"
+    }
 }

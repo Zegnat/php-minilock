@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="always" verbose="true">
+<phpunit bootstrap="vendor/autoload.php" colors="true" verbose="true">
     <testsuites>
         <testsuite name="MiniLock Test Suite">
             <directory>tests</directory>
+            <exclude>tests/MiniLockTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>
