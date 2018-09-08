@@ -43,10 +43,10 @@ interface MiniLockInterface
      * Encrypt a file.
      *
      * @param SplFileObject $from       the file that will be encrypted
-     * @param SplFileObject $to         the file where the encrypted message will
-     *                                  be stored
-     * @param string[]      $recipients an array of miniLock IDs that will be able
-     *                                  to decrypt the encrypted message
+     * @param SplFileObject $to         the file where the encrypted message
+     *                                  will be stored
+     * @param string[]      $recipients an array of miniLock IDs that will be
+     *                                  able to decrypt the encrypted message
      *
      * @return int the amount of encrypted bytes written
      */

@@ -77,7 +77,7 @@ final class MiniLockCompatTest extends TestCase
         );
 
         $size = $miniLock->encrypt(
-            new SplFileObject(__DIR__ . '/assets/test.jpg', 'r'),
+            new SplFileObject(__DIR__.'/assets/test.jpg', 'r'),
             new SplTempFileObject(),
             [
                 'dJYs5sVfSSvccahyEYPwXp7n3pbXeoTnuBWHEmEgi95fF',

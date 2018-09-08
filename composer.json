@@ -19,14 +19,14 @@
     "require": {
         "php": "~7.0",
         "ext-blake2": "*",
+        "ext-mbstring": "*",
         "ext-scrypt": "*",
         "ext-sodium": "*",
         "tuupola/base58": "dev-master"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
-        "phpunit/phpunit": "^7.3",
-        "ext-mbstring": "*"
+        "phpunit/phpunit": "^7.3"
     },
     "autoload": {
         "psr-4": {
